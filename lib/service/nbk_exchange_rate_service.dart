@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:nbk_app/models/nbk_model.dart';
 
-class ServicePokedex extends Object {
-  static Future getNBK() async {
-    Response  res = await Dio().get("https://nbu.uz/uz/exchange-rates/json/");
-    return NbkModel.fromJson(jsonDecode(res.data()));
+class ServiceNBK {
+  static Future<List<NbkModel>> getNBK() async {
+    Uri url = Uri.parse("https://nbu.uz/uz/exchange-rates/json");
+    dynamic res = await http.get(url);
+    return (jsonDecode(res.body) as List).map((e) => NbkModel.fromJson(e)).toList();
   }
 }
