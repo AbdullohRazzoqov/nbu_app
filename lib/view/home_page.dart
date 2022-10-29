@@ -21,22 +21,15 @@ class _MyHomePageState extends State<MyHomePage> {
             } else if (snapshot.hasError) {
               return const Center(child: Text("ERROR"));
             } else {
-              return Column(
-                children: const [
-                  SizedBox(
-                    height: 70,
+              return ListView.builder(itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text("${snapshot.data![index].code}"),
+                    subtitle: Text("${snapshot.data![index].title}"),
+                    trailing: Text("${snapshot.data![index].cbPrice} Sum"),
                   ),
-                  ListTile(
-                    title: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    trailing: Text("asdf"),
-                  ),
-                  Expanded(flex: 5, child: Text(""))
-                ],
-              );
+                );
+              },itemCount: snapshot.data!.length,);
             }
           }),
     );
