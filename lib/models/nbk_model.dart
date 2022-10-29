@@ -1,5 +1,5 @@
-class NbkModel {
-  NbkModel({
+class NbuModel {
+  NbuModel({
     this.title,
     this.code,
     this.cbPrice,
@@ -15,7 +15,7 @@ class NbkModel {
   String? nbuCellPrice;
   String? date;
 
-  factory NbkModel.fromJson(Map<String, dynamic> json) => NbkModel(
+  factory NbuModel.fromJson(Map<String, dynamic> json) => NbuModel(
         title: json["title"],
         code: json["code"],
         cbPrice: json["cb_price"],
